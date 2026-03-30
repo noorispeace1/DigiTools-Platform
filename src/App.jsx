@@ -67,6 +67,6 @@ function App() {
       <Footer />
     </div>
   )
-}fd
+}
 
 export default App

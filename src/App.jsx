@@ -1,86 +1,72 @@
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState } from 'react'
+import './App.css'
+import Banner from './Component/Banner'
+import Card from './Component/Card'
+import Cart from './Component/Cart'
+import Footer from './Component/Footer'
+import Header from './Component/Header'
+import NavBar from './Component/NavBar'
+import PriceList from './Component/PriceList'
+import Section from './Section'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Cart = ({ cardata, setcarddata }) => {
-  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
-
- 
-  const removeFromCart = (id, itemName) => {
-    setcarddata(prev => prev.filter(item => item.id !== id));
-    
-  
-    toast.error(`${itemName} removed from cart!`, {
-      position: "bottom-right",
-      autoClose: 1500,
-      theme: "colored",
-      hideProgressBar: true,
-    });
-  };
-
-  const total = cardata.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
-
-  const handleCheckout = () => {
-    if (cardata.length === 0) return;
-    toast.success("Order Placed Successfully! 🎉", { position: "top-center" });
-    setIsOrderPlaced(true);
-    setTimeout(() => {
-      setcarddata([]);
-      setIsOrderPlaced(false);
-    }, 3000);
-  };
-
-  if (isOrderPlaced) return (
-    <div className="text-center py-40">
-      <h2 className="text-5xl font-black text-purple-600 animate-bounce">ORDER CONFIRMED! 🚀</h2>
-      <p className="text-gray-500 mt-5 italic">Clearing your cart...</p>
-    </div>
-  );
-
-  return (
-    <div className="max-w-3xl mx-auto px-4">
-      <div className="bg-white rounded-[45px] border-2 border-cyan-300 p-10 shadow-2xl">
-        <h2 className="text-3xl font-black mb-10 text-gray-800">Your Cart</h2>
-        
-        {cardata.length === 0 ? (
-          <div className="text-center py-20 text-gray-400 text-xl font-medium">Your cart is empty!</div>
-        ) : (
-          <div className="space-y-6">
-            {cardata.map((item) => (
-              <div key={item.id} className="flex items-center justify-between p-6 bg-gray-50 rounded-[30px] border border-gray-100 transition-all hover:bg-white hover:shadow-md">
-                <div className="flex items-center gap-6">
-                  <span className="text-4xl bg-white p-3 rounded-2xl shadow-sm">{item.icon}</span>
-                  <div>
-                    <h4 className="font-bold text-xl">{item.name}</h4>
-                    <p className="text-purple-600 font-semibold">${item.price} x {item.quantity || 1}</p>
-                  </div>
-                </div>
-                
-                {/* Remove Button with Toast Trigger */}
-                <button 
-                  onClick={() => removeFromCart(item.id, item.name)}
-                  className="text-red-500 font-bold hover:bg-red-50 px-5 py-2 rounded-full transition-all border border-transparent hover:border-red-200"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-
-            <div className="flex justify-between items-center pt-10 border-t border-gray-100">
-              <span className="text-gray-400 text-xl font-bold">Total Amount:</span>
-              <span className="text-5xl font-black text-gray-900">${total}</span>
-            </div>
-
-            <button 
-              onClick={handleCheckout}
-              className="w-full bg-[#7C3AED] text-white font-bold py-6 rounded-full text-2xl mt-8 hover:bg-[#6D28D9] transition-all shadow-xl shadow-purple-100 active:scale-95"
-            >
-              Confirm Checkout
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+const getModels = async () => {
+  const res = await fetch("/Models.json");
+  return res.json();
 };
 
-export default Cart;
+const modelPromise = getModels();
+
+function App() {
+  const [ActiveTab, setActiveTab] = useState("Product")
+  const [cardata, setcarddata] = useState([])
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Toast notifications Container */}
+      <ToastContainer limit={3} />
+      
+      {/* NavBar-e cardata pass kora holo counter er jonno */}
+      <NavBar cardata={cardata} />
+      
+      <Banner />
+
+      {/* Navigation Tabs */}
+      <div className="flex justify-center my-10">
+        <div className="bg-white p-2 rounded-full shadow-md flex gap-2 border border-purple-100">
+          <button 
+            className={`px-10 py-2.5 rounded-full font-bold transition-all ${ActiveTab === 'Product' ? 'bg-[#7C3AED] text-white shadow-lg' : 'text-gray-500 hover:bg-gray-100'}`}
+            onClick={() => setActiveTab("Product")}
+          >
+            Products
+          </button>
+          <button 
+            className={`px-10 py-2.5 rounded-full font-bold transition-all ${ActiveTab === 'Cart' ? 'bg-[#7C3AED] text-white shadow-lg' : 'text-gray-500 hover:bg-gray-100'}`}
+            onClick={() => setActiveTab("Cart")}
+          >
+            Cart ({cardata.length})
+          </button>
+        </div>
+      </div>
+
+      {/* Main Content Area */}
+      <main className="pb-20">
+        {ActiveTab === 'Product' ? (
+          <>
+            <Card cardata={cardata} setcarddata={setcarddata} modelPromise={modelPromise} />
+            <PriceList />
+            <Section />
+          </>
+        ) : (
+          <Cart cardata={cardata} setcarddata={setcarddata} />
+        )}
+      </main>
+
+      <Header />
+      <Footer />
+    </div>
+  )
+}
+
+export default App

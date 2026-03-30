@@ -8,7 +8,7 @@ const Card = ({ modelPromise, cardata, setcarddata }) => {
   const handleBuy = (model) => {
     const modelId = model.id;
 
-    // ১. ক্লিক করার সাথে সাথে টোস্ট কনফার্মেশন দেখাবে
+   
     toast.success(`${model.name} added to cart! 🛒`, {
       position: "top-right",
       autoClose: 1500,
@@ -19,7 +19,6 @@ const Card = ({ modelPromise, cardata, setcarddata }) => {
       theme: "colored",
     });
 
-    // ২. বাটনের টেক্সট সাময়িকভাবে পরিবর্তন
     setButtonStates((prev) => ({
       ...prev,
       [modelId]: 'Added ✅' 
@@ -29,17 +28,17 @@ const Card = ({ modelPromise, cardata, setcarddata }) => {
       setButtonStates((prev) => ({ ...prev, [modelId]: 'Buy Now' }));
     }, 1000);
 
-    // ৩. কার্টে ডাটা যোগ করার লজিক
+ 
     setcarddata((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === modelId);
 
       if (existingItem) {
-        // আইটেম থাকলে কোয়ান্টিটি ১ বাড়বে
+        
         return prevCart.map((item) =>
           item.id === modelId ? { ...item, quantity: (item.quantity || 1) + 1 } : item
         );
       } else {
-        // নতুন আইটেম হলে ১ কোয়ান্টিটিসহ যোগ হবে
+       
         return [...prevCart, { ...model, quantity: 1 }];
       }
     });

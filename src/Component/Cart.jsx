@@ -37,7 +37,7 @@ const Cart = ({ cardata = [], setcarddata }) => {
   if (isOrderPlaced) {
     return (
       <div className="text-center py-40">
-        <h2 className="text-5xl font-black text-purple-600 animate-bounce">ORDER CONFIRMED! 🚀</h2>
+        <h2 className="text-5xl font-black text-purple-600 animate-bounce">ORDER CONFIRMED!</h2>
         <p className="text-gray-500 mt-5 italic">Redirecting you back shortly...</p>
       </div>
     );

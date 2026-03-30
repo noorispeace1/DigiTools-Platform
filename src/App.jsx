@@ -24,15 +24,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Toast notifications Container */}
+     
       <ToastContainer limit={3} />
-      
-      {/* NavBar-e cardata pass kora holo counter er jonno */}
+     
       <NavBar cardata={cardata} />
       
       <Banner />
 
-      {/* Navigation Tabs */}
+    
       <div className="flex justify-center my-10">
         <div className="bg-white p-2 rounded-full shadow-md flex gap-2 border border-purple-100">
           <button 
@@ -50,7 +49,7 @@ function App() {
         </div>
       </div>
 
-      {/* Main Content Area */}
+    
       <main className="pb-20">
         {ActiveTab === 'Product' ? (
           <>

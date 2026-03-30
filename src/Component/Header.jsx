@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
     return (
-       <div className="flex flex-col md:flex-row mb-10 items-center justify-center bg-gradient-to-r from-[#8b22ff] to-[#9c33ff] py-10 px-6 rounded-xl text-white">
+       <div className="flex flex-col md:flex-row mb-10 max-w-7xl mx-auto items-center justify-center bg-gradient-to-r from-[#8b22ff] to-[#9c33ff] py-10 px-6 rounded-xl text-white">
   
   {/* Active Users */}
   <div className="text-center px-12 mt-7">

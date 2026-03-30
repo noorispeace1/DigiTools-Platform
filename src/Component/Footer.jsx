@@ -1,9 +1,9 @@
 import React from 'react';
-import { FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa'; // react-icons ব্যবহার করা হয়েছে
+import { FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa'; 
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0b0e1a] text-white py-12 px-6 md:px-16 font-sans mt-10">
+    <footer className="bg-[#0b0e1a] text-white py-12 px-6 max-w-7xl mx-auto md:px-16 font-sans mt-10">
       <div className="max-w-7xl mx-auto">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">

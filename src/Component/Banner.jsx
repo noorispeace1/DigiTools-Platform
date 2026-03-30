@@ -2,7 +2,7 @@ import React from 'react';
 
 const WorkflowCTA = () => {
   return (
-    <section className="relative w-full py-20 px-6 mt-12 flex flex-col items-center justify-center bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] text-white text-center font-sans overflow-hidden">
+    <section className="relative w-full max-w-7xl mx-auto py-20 px-6 mt-12 flex flex-col items-center justify-center bg-gradient-to-br from-[#7C3AED] to-[#6D28D9] text-white text-center font-sans overflow-hidden">
       
       {/* Container */}
       <div className="max-w-4xl w-full z-10">

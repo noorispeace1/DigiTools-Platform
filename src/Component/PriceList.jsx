@@ -2,14 +2,14 @@ import React from 'react';
 
 const PriceList = () => {
     return (
-          <div className="bg-white min-h-screen py-16 px-4">
-      {/* Title Section */}
+          <div className="bg-white min-h-screen py-16 px-4 mt-28">
+    
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-[#0F172A] mb-3">Simple, Transparent Pricing</h2>
         <p className="text-slate-400 text-sm">Choose the plan that fits your needs. Upgrade or downgrade anytime.</p>
       </div>
 
-      {/* Pricing Cards Grid */}
+     
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         
         {/* Starter Card */}
@@ -34,7 +34,7 @@ const PriceList = () => {
           </button>
         </div>
 
-        {/* Pro Card (Highlighted) */}
+       
         <div className="relative bg-[#7C3AED] rounded-2xl p-8 flex flex-col shadow-xl text-white">
           <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FEF3C7] text-[#92400E] text-[10px] font-bold px-3 py-1 rounded-full uppercase">
             Most Popular
@@ -59,7 +59,7 @@ const PriceList = () => {
           </button>
         </div>
 
-        {/* Enterprise Card */}
+     
         <div className="bg-white border border-slate-100 rounded-2xl p-8 flex flex-col shadow-sm">
           <div className="mb-8">
             <h3 className="text-lg font-semibold text-slate-800">Enterprise</h3>
